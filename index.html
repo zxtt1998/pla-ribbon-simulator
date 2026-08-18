@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="enhancements.css" />
   </head>
   <body>
     <div class="app-shell">
@@ -27,7 +28,7 @@
             <h1>把荣誉，排列在应有的位置</h1>
             <p class="intro-copy">从左侧勋表库选择项目，系统会依据类别与等级生成佩戴预览。你也可以拖动已选勋表，检查排列逻辑。</p>
           </div>
-          <div class="session-note"><span class="pulse"></span>当前方案仅保存在此浏览器</div>
+          <div class="session-note"><span class="pulse"></span>编辑内容自动保存到本设备</div>
         </section>
 
         <section class="workspace" aria-label="勋表排列工作台">
@@ -53,7 +54,7 @@
           </aside>
 
           <section class="preview panel">
-            <div class="panel-title"><div><p class="section-kicker">02 / 预览</p><h2>佩戴效果</h2></div><button class="outline-button" id="autoArrange">自动排列 <span>→</span></button></div>
+            <div class="panel-title"><div><p class="section-kicker">02 / 预览</p><h2>佩戴效果</h2></div><div class="preview-actions"><button class="outline-button export-button" id="exportRack">导出勋表</button><button class="outline-button export-button" id="exportUniform">导出佩戴效果</button><button class="outline-button" id="autoArrange">自动排列 <span>→</span></button></div></div>
             <div class="uniform-canvas">
               <div class="uniform-label">礼服左胸 · 勋表佩戴区</div>
               <div class="epaulet epaulet-left"></div><div class="epaulet epaulet-right"></div>
@@ -83,6 +84,12 @@
       </main>
       <footer>模拟器仅供学习与排列参考，不替代正式审定。</footer>
     </div>
+    <dialog id="ribbonViewer" class="ribbon-viewer" aria-labelledby="viewerTitle">
+      <div class="viewer-bar"><strong id="viewerTitle">勋表大图</strong><button id="closeViewer" type="button" aria-label="关闭大图">×</button></div>
+      <img id="viewerImage" alt="" />
+      <p id="viewerMeta"></p>
+    </dialog>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
