@@ -1,5 +1,6 @@
 .preview-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px}
 .export-button{color:#334c63;border-color:#9aaab5}.export-button:disabled{opacity:.6;cursor:wait}
+.catalog-item{content-visibility:auto;contain-intrinsic-size:72px}
 .ribbon-preview-trigger{padding:0;border:0;background:transparent;font:inherit;text-align:inherit;cursor:zoom-in}
 .ribbon-preview-trigger:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 .ribbon-rack:has(.position-ribbon)>.rack-item:first-child:not(:only-child){grid-column:span 2!important}
