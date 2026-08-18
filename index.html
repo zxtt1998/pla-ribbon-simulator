@@ -43,6 +43,16 @@
                 <button data-profile="nco">军士</button>
               </div>
             </div>
+            <div class="force-picker" aria-label="预览军种选择">
+              <span>预览军种</span>
+              <div id="forceControls">
+                <button class="active" data-force="army">陆军</button>
+                <button data-force="navy">海军</button>
+                <button data-force="airforce">空军</button>
+                <button data-force="rocket">火箭军</button>
+                <button data-force="pap">武警部队</button>
+              </div>
+            </div>
             <label class="enlistment-year" for="enlistYear">入伍年份
               <select id="enlistYear" aria-label="入伍年份"><option value="">未填写（手动选择军龄）</option></select>
             </label>
@@ -56,7 +66,7 @@
           <section class="preview panel">
             <div class="panel-title"><div><p class="section-kicker">02 / 预览</p><h2>佩戴效果</h2></div><div class="preview-actions"><button class="outline-button export-button" id="exportRack">导出勋表</button><button class="outline-button export-button" id="exportUniform">导出佩戴效果</button><button class="outline-button clear-button" id="clearAll">一键清除</button></div></div>
             <div class="uniform-canvas">
-              <div class="uniform-label">礼服左胸 · 勋表佩戴区</div>
+              <div class="uniform-label" id="uniformLabel">陆军礼服左胸 · 勋表佩戴区</div>
               <div class="epaulet epaulet-left"></div><div class="epaulet epaulet-right"></div>
               <div class="collar collar-left"></div><div class="collar collar-right"></div>
               <div class="rack-shadow"></div>
@@ -89,7 +99,6 @@
       <img id="viewerImage" alt="" />
       <p id="viewerMeta"></p>
     </dialog>
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
