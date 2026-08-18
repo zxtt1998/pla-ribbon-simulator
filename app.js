@@ -1,0 +1,137 @@
+const image = name => `assets/ribbons/${name}`;
+const ribbons = [
+  {id:'cmc-vc',name:'军委副主席',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:1,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_CMC_VC.svg')},
+  {id:'cmc-member',name:'军委委员',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:2,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_CMC_member.svg')},
+  {id:'theatre',name:'战区级正职',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:3,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_theatre_command.svg')},
+  {id:'theatre-deputy',name:'战区级副职',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:4,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_theatre_command_deputy.svg')},
+  {id:'corps',name:'军级正职',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:5,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_corps.svg')},
+  {id:'corps-deputy',name:'军级副职',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:6,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_corps_deputy.svg')},
+  {id:'division',name:'师级正职',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:7,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_division.svg')},
+  {id:'division-deputy',name:'师级副职',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:8,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_division_deputy.svg')},
+  {id:'regiment',name:'团级正职',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:9,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_regiment.svg')},
+  {id:'regiment-deputy',name:'团级副职',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:10,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_regiment_deputy.svg')},
+  {id:'battalion',name:'营级正职',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:11,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_battalion.svg')},
+  {id:'battalion-deputy',name:'营级副职',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:12,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_battalion_deputy.svg')},
+  {id:'company',name:'连级正职',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:13,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_company.svg')},
+  {id:'company-deputy',name:'连级副职',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:14,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_company_deputy.svg')},
+  {id:'platoon',name:'排级',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:15,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_platoon.svg')},
+  {id:'tech-lv1',name:'正高级专业技术职务',category:'position',profile:'officer-tech',kind:'岗位职务层级',rank:16,subtitle:'专业技术军官',src:image('PLA_rank_ribbon_STO_lv1.svg')},
+  {id:'tech-lv2',name:'副高级专业技术职务',category:'position',profile:'officer-tech',kind:'岗位职务层级',rank:17,subtitle:'专业技术军官',src:image('PLA_rank_ribbon_STO_lv2.svg')},
+  {id:'tech-lv3',name:'中级专业技术职务',category:'position',profile:'officer-tech',kind:'岗位职务层级',rank:18,subtitle:'专业技术军官',src:image('PLA_rank_ribbon_STO_lv3.svg')},
+  {id:'tech-lv4',name:'初级专业技术职务',category:'position',profile:'officer-tech',kind:'岗位职务层级',rank:19,subtitle:'专业技术军官',src:image('PLA_rank_ribbon_STO_lv4.svg')},
+  {id:'nco-staff',name:'军士参谋',category:'position',profile:'nco',kind:'岗位职务层级',rank:20,subtitle:'军士岗位',src:image('PLA_rank_ribbon_staff_MSG.svg')},
+  {id:'nco-section',name:'分队长',category:'position',profile:'nco',kind:'岗位职务层级',rank:21,subtitle:'军士岗位',src:image('PLA_rank_ribbon_section.svg')},
+  {id:'nco-section-deputy',name:'副分队长',category:'position',profile:'nco',kind:'岗位职务层级',rank:22,subtitle:'军士岗位',src:image('PLA_rank_ribbon_section_deputy.svg')},
+  {id:'nco-squad',name:'班长',category:'position',profile:'nco',kind:'岗位职务层级',rank:23,subtitle:'军士岗位',src:image('PLA_rank_ribbon_squad.svg')},
+  {id:'nco-squad-deputy',name:'副班长',category:'position',profile:'nco',kind:'岗位职务层级',rank:24,subtitle:'军士岗位',src:image('PLA_rank_ribbon_squad_deputy.svg')},
+  {id:'bayi',name:'八一勋章',category:'honour',kind:'功勋荣誉 · 勋章',rank:101,subtitle:'军队最高荣誉',src:image('PLA_honour_ribbon_order_of_bayi.svg')},
+  {id:'red-banner',name:'红旗勋章',category:'honour',kind:'功勋荣誉 · 勋章',rank:102,subtitle:'战时荣誉',src:image('PLA_honour_ribbon_order_of_red_banner.svg')},
+  {id:'red-star',name:'红星勋章',category:'honour',kind:'功勋荣誉 · 勋章',rank:103,subtitle:'战时荣誉',src:image('PLA_honour_ribbon_order_of_red_star.svg')},
+  {id:'hero-special',name:'特级战斗英雄',category:'honour',kind:'功勋荣誉 · 荣誉称号',rank:111,subtitle:'个人战时荣誉',src:image('PLA_honour_ribbon_honorary_title_individual_wartime_lv1.svg')},
+  {id:'hero-first',name:'一级战斗英雄',category:'honour',kind:'功勋荣誉 · 荣誉称号',rank:112,subtitle:'个人战时荣誉',src:image('PLA_honour_ribbon_honorary_title_individual_wartime_lv2.svg')},
+  {id:'hero-second',name:'二级战斗英雄',category:'honour',kind:'功勋荣誉 · 荣誉称号',rank:113,subtitle:'个人战时荣誉',src:image('PLA_honour_ribbon_honorary_title_individual_wartime_lv3.svg')},
+  {id:'wartime-first',name:'一等战功',category:'honour',kind:'功勋荣誉 · 奖章',rank:121,subtitle:'个人战时奖励',src:image('PLA_honour_ribbon_meritorious_service_medal_individual_wartime_lv1.svg')},
+  {id:'wartime-second',name:'二等战功',category:'honour',kind:'功勋荣誉 · 奖章',rank:122,subtitle:'个人战时奖励',src:image('PLA_honour_ribbon_meritorious_service_medal_individual_wartime_lv2.svg')},
+  {id:'wartime-third',name:'三等战功',category:'honour',kind:'功勋荣誉 · 奖章',rank:123,subtitle:'个人战时奖励',src:image('PLA_honour_ribbon_meritorious_service_medal_individual_wartime_lv3.svg')},
+  {id:'peacetime-first',name:'一等功',category:'honour',kind:'功勋荣誉 · 奖章',rank:131,subtitle:'个人平时奖励',src:image('PLA_honour_ribbon_meritorious_service_medal_individual_peacetime_lv1.svg')},
+  {id:'combat-mission',name:'执行作战任务纪念章',category:'service',kind:'服役经历',rank:201,subtitle:'作战任务经历',src:image('PLA_service_ribbon_combat_mission.svg')},
+  {id:'bravery',name:'英勇纪念章',category:'service',kind:'服役经历',rank:202,subtitle:'战时纪念',src:image('PLA_service_ribbon_bravery.svg')},
+  {id:'overseas-1',name:'一级海外服役纪念章',category:'service',kind:'服役经历',rank:203,subtitle:'海外服役经历',src:image('PLA_service_ribbon_overseas_deployment_lv1.svg')},
+  {id:'overseas-2',name:'二级海外服役纪念章',category:'service',kind:'服役经历',rank:204,subtitle:'海外服役经历',src:image('PLA_service_ribbon_overseas_deployment_lv2.svg')},
+  {id:'overseas-3',name:'三级海外服役纪念章',category:'service',kind:'服役经历',rank:205,subtitle:'海外服役经历',src:image('PLA_service_ribbon_overseas_deployment_lv3.svg')},
+  {id:'frontier-1',name:'一级卫国戍边纪念章',category:'service',kind:'服役经历',rank:206,subtitle:'戍边服役经历',src:image('PLA_service_ribbon_medal_of_defending_the_frontiers_lv1.svg')},
+  {id:'frontier-2',name:'二级卫国戍边纪念章',category:'service',kind:'服役经历',rank:207,subtitle:'戍边服役经历',src:image('PLA_service_ribbon_medal_of_defending_the_frontiers_lv2.svg')},
+  {id:'frontier-3',name:'三级卫国戍边纪念章',category:'service',kind:'服役经历',rank:208,subtitle:'戍边服役经历',src:image('PLA_service_ribbon_medal_of_defending_the_frontiers_lv3.svg')},
+  {id:'devotion',name:'献身国防纪念章',category:'service',kind:'服役经历',rank:209,subtitle:'服役经历',src:image('PLA_service_ribbon_devotion_for_national_defense.svg')},
+  {id:'year-1',name:'一年军龄略章',category:'term',kind:'服役年限',rank:401,subtitle:'军龄',src:image('PLA_service_ribbon_1yr.svg')},
+  {id:'year-2',name:'二年军龄略章',category:'term',kind:'服役年限',rank:402,subtitle:'军龄',src:image('PLA_service_ribbon_2yrs.svg')},
+  {id:'year-3',name:'三年军龄略章',category:'term',kind:'服役年限',rank:403,subtitle:'军龄',src:image('PLA_service_ribbon_3yrs.svg')},
+  {id:'year-4',name:'四年军龄略章',category:'term',kind:'服役年限',rank:404,subtitle:'军龄',src:image('PLA_service_ribbon_4yrs.svg')},
+  {id:'year-5',name:'五年军龄略章',category:'term',kind:'服役年限',rank:405,subtitle:'军龄',src:image('PLA_service_ribbon_5yrs.svg')},
+  {id:'year-10',name:'十年军龄略章',category:'term',kind:'服役年限',rank:410,subtitle:'军龄',src:image('PLA_service_ribbon_10yrs.svg')},
+  {id:'year-20',name:'二十年军龄略章',category:'term',kind:'服役年限',rank:420,subtitle:'军龄',src:image('PLA_service_ribbon_20yrs.svg')},
+  {id:'year-30',name:'三十年军龄略章',category:'term',kind:'服役年限',rank:430,subtitle:'军龄',src:image('PLA_service_ribbon_30yrs.svg')},
+  {id:'year-40',name:'四十年军龄略章',category:'term',kind:'服役年限',rank:440,subtitle:'军龄',src:image('PLA_service_ribbon_40yrs.svg')},
+  {id:'year-50',name:'五十年军龄略章',category:'term',kind:'服役年限',rank:450,subtitle:'军龄',src:image('PLA_service_ribbon_50yrs.svg')}
+];
+// 23 式略章完整素材清单：同一项目的不同情形/等级均可单独选择。
+// 已在上方列出的项目会被跳过，避免与基础演示项重复。
+const addRibbon=(id,name,category,rank,subtitle,file,profile)=>{
+  if(ribbons.some(r=>r.src.endsWith(`/${file}`))) return;
+  ribbons.push({id,name,category,profile,kind:category==='honour'?'功勋荣誉表彰':category==='service'?'服役经历':category==='term'?'服役年限':'岗位职务层级',rank,subtitle,src:image(file)});
+};
+const addLevels=(prefix,names,category,rank,subtitle,fileFor,profile)=>names.forEach((name,i)=>addRibbon(`${prefix}-${i+1}`,name,category,rank+i,subtitle,fileFor(i+1),profile));
+
+// 功勋荣誉表彰：个人项目在前、集体项目在后；战时、平时、重大非战争行动依次排序。
+addLevels('wartime-unit-title',['特级英模单位','一级英模单位','二级英模单位'],'honour',114,'集体战时荣誉',n=>`PLA_honour_ribbon_honorary_title_unit_wartime_lv${n}.svg`);
+addLevels('peacetime-personal-title',['个人一级平时荣誉称号','个人二级平时荣誉称号'],'honour',120,'个人平时荣誉',n=>`PLA_honour_ribbon_honorary_title_individual_peacetime_lv${n}.svg`);
+addRibbon('peacetime-unit-title','集体平时荣誉称号','honour',123,'集体平时荣誉','PLA_honour_ribbon_honorary_title_unit_peacetime.svg');
+addRibbon('mo-personal-title','个人重大非战争军事行动荣誉称号','honour',124,'个人重大非战争军事行动荣誉','PLA_honour_ribbon_honorary_title_individual_vital_MOOTW.svg');
+addRibbon('mo-unit-title','集体重大非战争军事行动荣誉称号','honour',125,'集体重大非战争军事行动荣誉','PLA_honour_ribbon_honorary_title_unit_vital_MOOTW.svg');
+
+const wartimeTypes=['不区分情形','指挥作战','参加战斗','支援保障'];
+for(let level=1;level<=4;level++) wartimeTypes.forEach((type,i)=>addRibbon(`wartime-personal-${level}-${i}`,`${type}个人${['一','二','三','四'][level-1]}等战功`,'honour',140+(level-1)*10+i,'个人战时奖励',`PLA_honour_ribbon_meritorious_service_medal_individual_wartime_lv${level}${i?`_cat${i}`:''}.svg`));
+addLevels('wartime-unit-medal',['集体一等战功','集体二等战功','集体三等战功','集体四等战功'],'honour',185,'集体战时奖励',n=>`PLA_honour_ribbon_meritorious_service_medal_unit_wartime_lv${n}.svg`);
+
+const peacetimeTypes=['不区分情形','战备训练','教育管理','国防科技','服务保障'];
+for(let level=1;level<=3;level++) peacetimeTypes.forEach((type,i)=>addRibbon(`peacetime-personal-${level}-${i}`,`${type}个人${['一','二','三'][level-1]}等功`,'honour',200+(level-1)*10+i,'个人平时奖励',`PLA_honour_ribbon_meritorious_service_medal_individual_peacetime_lv${level}${i?`_cat${i}`:''}.svg`));
+addLevels('peacetime-unit-medal',['集体一等功','集体二等功','集体三等功'],'honour',235,'集体平时奖励',n=>`PLA_honour_ribbon_meritorious_service_medal_unit_peacetime_lv${n}.svg`);
+addLevels('mo-personal-medal',['个人重大非战争军事行动一等功','个人重大非战争军事行动二等功','个人重大非战争军事行动三等功'],'honour',240,'个人重大非战争军事行动奖励',n=>`PLA_honour_ribbon_meritorious_service_medal_individual_vital_MOOTW_lv${n}.svg`);
+addLevels('mo-unit-medal',['集体重大非战争军事行动一等功','集体重大非战争军事行动二等功','集体重大非战争军事行动三等功'],'honour',245,'集体重大非战争军事行动奖励',n=>`PLA_honour_ribbon_meritorious_service_medal_unit_vital_MOOTW_lv${n}.svg`);
+peacetimeTypes.forEach((type,i)=>addRibbon(`peacetime-individual-commend-${i}`,`${type}个人嘉奖`,'honour',250+i,'个人平时奖励',`PLA_honour_ribbon_reward_for_individual_peacetime${i?`_cat${i}`:''}.svg`));
+addRibbon('mo-individual-commend','个人重大非战争军事行动嘉奖','honour',256,'个人重大非战争军事行动奖励','PLA_honour_ribbon_reward_for_individual_vital_MOOTW.svg');
+addRibbon('peacetime-unit-commend','集体平时嘉奖','honour',257,'集体平时奖励','PLA_honour_ribbon_reward_for_unit_peacetime.svg');
+addRibbon('mo-unit-commend','集体重大非战争军事行动嘉奖','honour',258,'集体重大非战争军事行动奖励','PLA_honour_ribbon_reward_for_unit_vital_MOOTW.svg');
+addLevels('personal-commend',['个人一级表彰','个人二级表彰','个人三级表彰'],'honour',260,'个人表彰',n=>`PLA_honour_ribbon_commendation_for_individual_lv${n}.svg`);
+addLevels('unit-commend',['集体一级表彰','集体二级表彰','集体三级表彰'],'honour',264,'集体表彰',n=>`PLA_honour_ribbon_commendation_for_unit_lv${n}.svg`);
+addLevels('excellent-junior',['优秀基层官兵一级','优秀基层官兵二级','优秀基层官兵三级'],'honour',268,'优秀基层官兵荣誉',n=>`PLA_honour_ribbon_excellent_junior_officer_or_enlisted_lv${n}.svg`);
+['陆军先锋','海军深蓝勇士','空军空天铁拳','火箭军砺剑尖兵','战略支援尖兵','联勤保障尖兵','武警忠诚卫士'].forEach((name,group)=>addLevels(`service-honour-${group}`,[`${name}一级`,`${name}二级`,`${name}三级`],'honour',280+group*3,`${name}荣誉`,n=>`${['GF','Navy','AF','RF','SSF','JLSF','PAP'][group]}_honour_ribbon_lv${n}.svg`));
+
+// 服役经历：按《规定》第八条项目顺序建档。
+addRibbon('combat-mission-reverse','作战纪念章（背面示例）','service',300,'作战纪念章背面带战役名称及日期','PLA_service_ribbon_combat_mission_back.svg');
+addRibbon('major-nonwar','重大非战争军事行动经历','service',301,'重大非战争军事行动','PLA_service_ribbon_vital_MOOTW.svg');
+addRibbon('special-mission','重大专项任务经历','service',302,'重大专项任务','PLA_service_ribbon_vital_special_mission.svg');
+addLevels('unit-command-theatre',['正战区级单位主官','副战区级单位主官'],'service',310,'单位主官任职经历',n=>`PLA_service_ribbon_theatre_command_lv${n}.svg`);
+addLevels('unit-command-corps',['正军级单位主官','副军级单位主官'],'service',312,'单位主官任职经历',n=>`PLA_service_ribbon_corps_lv${n}.svg`);
+addLevels('unit-command-division',['正师级单位主官','副师级单位主官'],'service',314,'单位主官任职经历',n=>`PLA_service_ribbon_division_lv${n}.svg`);
+addLevels('unit-command-regiment',['正团级单位主官','副团级单位主官'],'service',316,'单位主官任职经历',n=>`PLA_service_ribbon_regiment_lv${n}.svg`);
+addLevels('unit-command-battalion',['正营级单位主官','副营级单位主官'],'service',318,'单位主官任职经历',n=>`PLA_service_ribbon_battalion_lv${n}.svg`);
+addRibbon('unit-command-company','正连级单位主官','service',320,'单位主官任职经历','PLA_service_ribbon_company.svg');
+[['中央军委机关','PLA_service_ribbon_organ_of_CMC.svg'],['军委机关部门主要领导','PLA_service_ribbon_organ_of_CMC_director.svg'],['军委机关局级内设机构主要领导','PLA_service_ribbon_organ_of_CMC_bureau_director.svg'],['军委机关处级内设机构主要领导','PLA_service_ribbon_organ_of_CMC_division_director.svg'],['正战区级机关','PLA_service_ribbon_organ_of_TCC.svg'],['正战区级机关主要领导','PLA_service_ribbon_organ_of_TCC_director.svg'],['正战区级机关内设机构主要领导','PLA_service_ribbon_organ_of_TCC_division_director.svg'],['副战区级机关','PLA_service_ribbon_organ_of_DBR.svg'],['副战区级机关主要领导','PLA_service_ribbon_organ_of_DBR_director.svg'],['军级机关','PLA_service_ribbon_organ_of_corps.svg'],['军级机关主要领导','PLA_service_ribbon_organ_of_corps_director.svg'],['军级机关内设机构主要领导','PLA_service_ribbon_organ_of_corps_division_director.svg'],['师旅团级机关','PLA_service_ribbon_organ_of_theatre_command.svg'],['师旅团级机关主要领导','PLA_service_ribbon_organ_of_theatre_command_director.svg'],['师旅团级机关局级内设机构主要领导','PLA_service_ribbon_organ_of_theatre_command_bureau_director.svg'],['师旅团级机关处级内设机构主要领导','PLA_service_ribbon_organ_of_theatre_command_division_director.svg']].forEach(([name,file],i)=>addRibbon(`organ-${i}`,name,'service',330+i,'机关任职经历',file));
+addLevels('joint-position',['高级联合岗位','中级联合岗位','初级联合岗位'],'service',350,'联合岗位任职经历',n=>`PLA_service_ribbon_joint_position_lv${n}.svg`);
+[['陆军','PLA_service_ribbon_ground_force.svg'],['海军','PLA_service_ribbon_navy.svg'],['空军','PLA_service_ribbon_air_force.svg'],['火箭军','PLA_service_ribbon_rocket_force.svg'],['战略支援部队','PLA_service_ribbon_strategic_support_force.svg'],['联勤保障部队','PLA_service_ribbon_joint_logistics_support_force.svg'],['武警部队','PLA_service_ribbon_armed_police.svg'],['国防动员单位','PLA_service_ribbon_national_defense_mobilization.svg']].forEach(([name,file],i)=>addRibbon(`force-${i}`,`${name}任职经历`,'service',355+i,'军兵种和武警部队任职经历',file));
+addRibbon('instructor','专职教官（教员）','service',364,'军队院校教官任职经历','PLA_service_ribbon_instructor.svg');
+addRibbon('instructor-part','兼职教官（教员）','service',365,'军队院校教官任职经历','PLA_service_ribbon_instructor_part-time.svg');
+addLevels('tech-role-experience',['正高职专业技术岗位','副高职专业技术岗位','中职专业技术岗位','初职专业技术岗位'],'service',370,'专业技术岗位任职经历',n=>`PLA_service_ribbon_STO_lv${n}.svg`);
+addLevels('command-training',['高级指挥教育培训','中级指挥教育培训','初级指挥教育培训'],'service',375,'军事教育培训经历',n=>`PLA_service_ribbon_education_and_training_in_command_lv${n}.svg`,'officer-command');
+addLevels('tech-training',['高级专业技术军官培训','中级专业技术军官培训','初级专业技术军官培训'],'service',378,'军事教育培训经历',n=>`PLA_service_ribbon_STO_training_lv${n}.svg`,'officer-tech');
+addLevels('nco-training',['高级军士晋升培训','中级军士晋升培训','初级军士晋升培训'],'service',381,'军事教育培训经历',n=>`PLA_service_ribbon_promotion_training_for_sergeant_lv${n}.svg`,'nco');
+addRibbon('overseas-education','出国（境）教育培训经历','service',385,'出国（境）教育培训经历','PLA_service_ribbon_overseas_education.svg');
+
+// 补足军龄略章的 6 至 9 年项目。
+addLevels('year-short',['六年军龄略章','七年军龄略章','八年军龄略章','九年军龄略章'],'term',406,'军龄',n=>`PLA_service_ribbon_${n+5}yrs.svg`);
+const repeatable=id=>/^(mo-(personal|unit)-medal|peacetime-personal-|peacetime-individual-commend|mo-individual-commend|peacetime-unit-commend|mo-unit-commend|personal-commend|unit-commend|excellent-junior|peacetime-unit-title|mo-unit-title|special-mission|overseas-education)/.test(id);
+const awardLimit=id=>/commend/.test(id)?20:10;
+ribbons.forEach(r=>{r.repeatable=repeatable(r.id);r.maxAwards=awardLimit(r.id)});
+let selected=[], filter='all', query='', profile='officer-command', dragId=null;
+const $=s=>document.querySelector(s), list=$('#catalogList'), rack=$('#ribbonRack'), selectedList=$('#selectedList');
+const ordered=(items=selected)=>[...items].sort((a,b)=>a.rank-b.rank);
+const wearable=()=>{const sorted=ordered();return sorted.length<=21?sorted:[...sorted.filter(r=>r.category==='position'||r.category==='term'),...sorted.filter(r=>r.category!=='position'&&r.category!=='term')].slice(0,21)};
+const ribbonEl=(r,number='')=>`<span class="ribbon-with-awards" title="${r.name}"><span class="ribbon" ${number?`data-number="${number}"`:''}><img src="${r.src}" alt="${r.name}勋表" />${r.repeatable&&r.awards>1?`<b class="award-marker" aria-label="获得${r.awards}次">${r.awards}</b>`:''}</span></span>`;
+const awardOptions=r=>Array.from({length:r.maxAwards},(_,i)=>`<option value="${i+1}" ${r.awards===i+1?'selected':''}>${i+1}</option>`).join('');
+function renderCatalog(){const visible=ribbons.filter(r=>(filter==='all'||r.category===filter)&&(!r.profile||r.profile===profile)&&r.name.includes(query)),positionLocked=selected.some(x=>x.category==='position');list.innerHTML=visible.map(r=>{const isSelected=selected.some(x=>x.id===r.id),locked=r.category==='position'&&positionLocked&&!isSelected;return `<div class="catalog-item ${locked?'position-locked':''}">${ribbonEl(selected.find(x=>x.id===r.id)||r)}<div class="catalog-copy"><strong>${r.name}</strong><span>${r.kind} · ${r.subtitle}${r.repeatable?' · 可标次数':''}</span></div><button class="add-button ${isSelected?'selected':''}" data-add="${r.id}" ${locked?'disabled':''} aria-label="${isSelected?'移除':'添加'}${r.name}">${isSelected?'−':'+'}</button></div>`}).join('')||'<p class="empty-selected">当前身份下没有可选项目</p>'}
+function render(){const correct=ordered(),ok=selected.every((r,i)=>r.id===correct[i]?.id),shown=wearable(),overflow=selected.length>21,rows=Math.max(1,Math.ceil(shown.length/3));$('#chosenCount').textContent=overflow?`${selected.length} 项已选 · 展示 21 项`:`${selected.length} 项已选`;$('#rowInfo').textContent=`${rows} / 7 行`;$('.uniform-canvas').style.setProperty('--rack-rows',rows);const remainder=shown.length%3; rack.innerHTML=shown.map((r,i)=>`${i===1&&remainder===1?'<span class="rack-spacer" aria-hidden="true" style="grid-column:5 / span 2"></span>':''}<span class="rack-item" style="grid-column:${i===0&&remainder===1?'3 / span 2':i===0&&remainder===2?'2 / span 2':'span 2'}">${ribbonEl(r,String(i+1).padStart(2,'0'))}</span>`).join('');$('#canvasEmpty').style.display=shown.length?'none':'block';selectedList.innerHTML=selected.length?selected.map((r,i)=>`<div class="selected-row" draggable="true" data-id="${r.id}"><span class="rank">${String(i+1).padStart(2,'0')}</span><span class="drag">⋮⋮</span>${ribbonEl(r)}<div><strong>${r.name}</strong><small>${r.kind} · ${r.subtitle}</small>${r.repeatable?`<label class="award-control">获得次数 <select data-awards="${r.id}" aria-label="${r.name}获得次数">${awardOptions(r)}</select> 次</label>`:''}</div><button class="move" data-up="${r.id}" title="前移">↑</button><button class="delete" data-remove="${r.id}" title="移除">×</button></div>`).join(''):'<p class="empty-selected">尚未选择勋表</p>';const status=$('#ruleStatus');if(!selected.length){status.innerHTML='<span class="status-icon">✓</span><div><strong>等待选择勋表</strong><p>添加项目后将自动核验</p></div>';status.style.background='#ecf5ef'}else if(overflow){status.innerHTML='<span class="status-icon">!</span><div><strong>超过 21 枚佩戴上限</strong><p>预览已优先保留岗位职务和服役年限类</p></div>';status.style.background='#fff1ef'}else{status.innerHTML=ok?'<span class="status-icon">✓</span><div><strong>排列符合 23 式规则</strong><p>类别、战时优先与等级顺序均已核验</p></div>':'<span class="status-icon">!</span><div><strong>发现排列顺序待调整</strong><p>点击“自动排列”恢复建议顺序</p></div>';status.style.background=ok?'#ecf5ef':'#fff1ef'}renderCatalog()}
+function autoArrange(){selected=ordered();render()}
+list.addEventListener('click',e=>{const id=e.target.dataset.add;if(!id)return;const item=ribbons.find(r=>r.id===id);if(selected.some(r=>r.id===id))selected=selected.filter(r=>r.id!==id);else{if(item.category==='position')selected=selected.filter(r=>r.category!=='position');selected=[...selected,{...item,awards:1}]}render()});
+selectedList.addEventListener('click',e=>{const id=e.target.dataset.remove||e.target.dataset.up;if(!id)return;if(e.target.dataset.remove)selected=selected.filter(r=>r.id!==id);else{const i=selected.findIndex(r=>r.id===id);if(i>0)[selected[i-1],selected[i]]=[selected[i],selected[i-1]]}render()});
+selectedList.addEventListener('change',e=>{const id=e.target.dataset.awards;if(!id)return;selected=selected.map(r=>r.id===id?{...r,awards:Number(e.target.value)}:r);render()});
+$('#categoryTabs').addEventListener('click',e=>{if(!e.target.dataset.category)return;filter=e.target.dataset.category;document.querySelectorAll('#categoryTabs button').forEach(b=>b.classList.toggle('active',b===e.target));renderCatalog()});
+$('#identityControls').addEventListener('click',e=>{if(!e.target.dataset.profile)return;profile=e.target.dataset.profile;document.querySelectorAll('#identityControls button').forEach(b=>b.classList.toggle('active',b===e.target));renderCatalog()});
+const enlistYear=$('#enlistYear'),currentYear=new Date().getFullYear();
+for(let year=currentYear;year>=1950;year--) enlistYear.insertAdjacentHTML('beforeend',`<option value="${year}">${year} 年</option>`);
+const termForYears=years=>{if(years<1)return[];if(years<=10)return[years];const base=Math.floor(years/10)*10;if(years%10===0)return[base];return[base,years%10]};
+const termLabel={1:'一',2:'二',3:'三',4:'四',5:'五',6:'六',7:'七',8:'八',9:'九',10:'十',20:'二十',30:'三十',40:'四十',50:'五十'};
+enlistYear.addEventListener('change',e=>{const year=Number(e.target.value);if(!year)return;const years=currentYear-year,terms=termForYears(years),termItems=terms.map(value=>ribbons.find(r=>r.category==='term'&&r.name===`${termLabel[value]}年军龄略章`)).filter(Boolean);selected=[...selected.filter(r=>r.category!=='term'),...termItems.map(r=>({...r,awards:1}))];render()});
+$('#searchInput').addEventListener('input',e=>{query=e.target.value.trim();renderCatalog()});$('#autoArrange').addEventListener('click',autoArrange);$('#resetButton').addEventListener('click',()=>{selected=[];render()});
+selectedList.addEventListener('dragstart',e=>{dragId=e.target.closest('[data-id]')?.dataset.id});selectedList.addEventListener('dragover',e=>e.preventDefault());selectedList.addEventListener('drop',e=>{e.preventDefault();const target=e.target.closest('[data-id]')?.dataset.id;if(!dragId||!target||dragId===target)return;const from=selected.findIndex(r=>r.id===dragId),to=selected.findIndex(r=>r.id===target),[item]=selected.splice(from,1);selected.splice(to,0,item);render()});
+render();

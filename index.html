@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>勋表排列模拟器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <div><strong>勋表排列模拟器</strong><span>UNIFORM RIBBON RACK</span></div>
+        </div>
+        <nav aria-label="主导航"><button class="nav-active">排列台</button><button>勋表图录</button><button>使用说明</button></nav>
+        <button class="text-button" id="resetButton">重置本次排列</button>
+      </header>
+
+      <main>
+        <section class="intro">
+          <div>
+            <p class="section-kicker">佩戴模拟</p>
+            <h1>把荣誉，排列在应有的位置</h1>
+            <p class="intro-copy">从左侧勋表库选择项目，系统会依据类别与等级生成佩戴预览。你也可以拖动已选勋表，检查排列逻辑。</p>
+          </div>
+          <div class="session-note"><span class="pulse"></span>当前方案仅保存在此浏览器</div>
+        </section>
+
+        <section class="workspace" aria-label="勋表排列工作台">
+          <aside class="catalog panel">
+            <div class="panel-title"><div><p class="section-kicker">01 / 选择</p><h2>勋表库</h2></div><span id="chosenCount">0 项已选</span></div>
+            <div class="search-wrap"><input id="searchInput" type="search" placeholder="搜索勋表名称" aria-label="搜索勋表名称" /><span>⌕</span></div>
+            <div class="identity-picker" aria-label="服役身份选择">
+              <span>身份与岗位</span>
+              <div id="identityControls">
+                <button class="active" data-profile="officer-command">军官 · 指挥管理</button>
+                <button data-profile="officer-tech">军官 · 专业技术</button>
+                <button data-profile="nco">军士</button>
+              </div>
+            </div>
+            <label class="enlistment-year" for="enlistYear">入伍年份
+              <select id="enlistYear" aria-label="入伍年份"><option value="">未填写（手动选择军龄）</option></select>
+            </label>
+            <div class="category-tabs" id="categoryTabs">
+              <button class="active" data-category="all">全部</button><button data-category="honour">功勋荣誉</button><button data-category="service">服役经历</button><button data-category="position">岗位职务</button><button data-category="term">服役年限</button>
+            </div>
+            <div class="catalog-list" id="catalogList"></div>
+            <p class="catalog-footnote">图案为模拟示意，请以正式实物及现行规定为准。</p>
+          </aside>
+
+          <section class="preview panel">
+            <div class="panel-title"><div><p class="section-kicker">02 / 预览</p><h2>佩戴效果</h2></div><button class="outline-button" id="autoArrange">自动排列 <span>→</span></button></div>
+            <div class="uniform-canvas">
+              <div class="uniform-label">礼服左胸 · 勋表佩戴区</div>
+              <div class="epaulet epaulet-left"></div><div class="epaulet epaulet-right"></div>
+              <div class="collar collar-left"></div><div class="collar collar-right"></div>
+              <div class="rack-shadow"></div>
+              <div id="ribbonRack" class="ribbon-rack" aria-live="polite"></div>
+              <div class="canvas-empty" id="canvasEmpty"><span>＋</span><p>从勋表库选择项目<br />开始生成佩戴预览</p></div>
+              <div class="uniform-caption"><span>左侧为本人右方</span><span id="rowInfo">0 / 3 行</span></div>
+            </div>
+            <div class="selection-heading"><span>已选勋表</span><small>可拖动调整 · 序号为当前顺位</small></div>
+            <div class="selected-list" id="selectedList"></div>
+          </section>
+
+          <aside class="rules panel">
+            <div class="panel-title"><div><p class="section-kicker">03 / 核验</p><h2>排列规则</h2></div></div>
+            <div class="rule-status" id="ruleStatus"><span class="status-icon">✓</span><div><strong>等待选择勋表</strong><p>添加项目后将自动核验</p></div></div>
+            <ol class="rule-list">
+              <li><span>01</span><p><b>四类顺序</b>岗位职务、功勋荣誉、服役经历、服役年限，由上至下、由左至右。</p></li>
+              <li><span>02</span><p><b>功勋荣誉</b>先个人后集体；先勋章、后奖章、再纪念章及其他项目。</p></li>
+              <li><span>03</span><p><b>战时与等级</b>同类先战时后平时；同一项目按高等级至低等级。</p></li>
+              <li><span>04</span><p><b>重复授予</b>同等级重复授予只佩戴 1 枚时，使用数字配件标注获得次数。</p></li>
+              <li><span>05</span><p><b>单行容量</b>每行 3 枚，最多不超过 7 行；不足整排时第一排居中。</p></li>
+            </ol>
+            <div class="source-box"><b>资料依据</b><p>已按 2023 年《军人勋表管理规定》更新排序，并使用维基页面列出的公开 SVG 勋表图。</p><a href="https://zh.wikipedia.org/wiki/中华人民共和国军人勋表" target="_blank" rel="noreferrer">查看勋表图录与规则 ↗</a></div>
+          </aside>
+        </section>
+      </main>
+      <footer>模拟器仅供学习与排列参考，不替代正式审定。</footer>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
