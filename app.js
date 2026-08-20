@@ -119,6 +119,8 @@ const STORAGE_KEY='pla-ribbon-simulator-state-v2';
 let selected=[], filter='all', query='', profile='officer-command', force='army', dragId=null, selectionSequence=0, repeatInputTimer=null, nameZh='姓名', namePinyin='XING MING';
 const forceThemes={army:{label:'陆军',background:'#3f5545'},navy:{label:'海军',background:'#f4f5f2'},airforce:{label:'空军',background:'#26394e'},rocket:{label:'火箭军',background:'#a99970'},pap:{label:'武警部队',background:'#4e5735'}};
 const $=s=>document.querySelector(s), list=$('#catalogList'), rack=$('#ribbonRack'), selectedList=$('#selectedList');
+const compoundSurnames=new Set(['欧阳','司马','上官','诸葛','夏侯','东方','皇甫','尉迟','公孙','慕容','令狐','长孙','宇文','司徒','司空','独孤','南宫','万俟','闻人','赫连','澹台','宗政','濮阳','淳于','单于','太叔','申屠','公冶','轩辕','令狐']);
+const toNamePinyin=value=>{const name=value.replace(/\s/g,'');if(!name||!window.pinyinPro)return'';const parts=[...name].map(char=>{const converted=window.pinyinPro.pinyin(char,{toneType:'none',type:'array'});return (converted[0]||char).toUpperCase()});const surnameLength=compoundSurnames.has(name.slice(0,2))&&parts.length>2?2:1;return parts.length>surnameLength?`${parts.slice(0,surnameLength).join('')} ${parts.slice(surnameLength).join('')}`:parts.join('')};
 const termOrder={十:1,二十:2,三十:3,四十:4,五十:5,一:11,二:12,三:13,四:14,五:15,六:16,七:17,八:18,九:19};
 const orderValue=r=>r.category==='term'?400+(termOrder[r.name.replace('年军龄略章','')]||99):r.rank;
 const ordered=(items=selected)=>[...items].sort((a,b)=>orderValue(a)-orderValue(b));
@@ -170,7 +172,7 @@ for(let year=currentYear;year>=1950;year--) enlistYear.insertAdjacentHTML('befor
 const savedEnlistYear=restoreState(); if(savedEnlistYear) enlistYear.value=savedEnlistYear;
 const nameInput=$('#nameInput'),pinyinInput=$('#pinyinInput');
 nameInput.value=nameZh;pinyinInput.value=namePinyin;
-nameInput.addEventListener('input',e=>{nameZh=e.target.value.trim().slice(0,6)||'姓名';render()});
+nameInput.addEventListener('input',e=>{nameZh=e.target.value.trim().slice(0,6)||'姓名';const converted=toNamePinyin(nameZh);if(converted){namePinyin=converted;pinyinInput.value=namePinyin}render()});
 pinyinInput.addEventListener('input',e=>{namePinyin=e.target.value.trim().toUpperCase().slice(0,24)||'XING MING';e.target.value=namePinyin;render()});
 document.querySelectorAll('#identityControls button').forEach(button=>button.classList.toggle('active',button.dataset.profile===profile));
 document.querySelectorAll('#forceControls button').forEach(button=>button.classList.toggle('active',button.dataset.force===force));
