@@ -56,6 +56,10 @@
             <label class="enlistment-year" for="enlistYear">入伍年份
               <select id="enlistYear" aria-label="入伍年份"><option value="">未填写（手动选择军龄）</option></select>
             </label>
+            <div class="name-card-fields" aria-label="姓名牌内容">
+              <label>姓名<input id="nameInput" type="text" value="姓名" maxlength="6" aria-label="姓名牌姓名" /></label>
+              <label>拼音<input id="pinyinInput" type="text" value="XING MING" maxlength="24" aria-label="姓名牌拼音" /></label>
+            </div>
             <div class="category-tabs" id="categoryTabs">
               <button class="active" data-category="all">全部</button><button data-category="honour">功勋荣誉</button><button data-category="service">服役经历</button><button data-category="position">岗位职务</button><button data-category="term">服役年限</button>
             </div>
@@ -70,7 +74,10 @@
               <div class="epaulet epaulet-left"></div><div class="epaulet epaulet-right"></div>
               <div class="collar collar-left"></div><div class="collar collar-right"></div>
               <div class="rack-shadow"></div>
-              <div id="ribbonRack" class="ribbon-rack" aria-live="polite"></div>
+              <div id="ribbonAssembly" class="ribbon-assembly">
+                <div id="namePlate" class="name-plate" aria-label="姓名牌"><span id="namePlateZh">姓名</span><small id="namePlatePinyin">XING MING</small></div>
+                <div id="ribbonRack" class="ribbon-rack" aria-live="polite"></div>
+              </div>
               <div class="canvas-empty" id="canvasEmpty"><span>＋</span><p>从勋表库选择项目<br />开始生成佩戴预览</p></div>
               <div class="uniform-caption"><span>左侧为本人右方</span><span id="rowInfo">0 / 3 行</span></div>
             </div>
@@ -99,6 +106,6 @@
       <img id="viewerImage" alt="" />
       <p id="viewerMeta"></p>
     </dialog>
-<script src="app.js?v=20260819d"></script>
+<script src="app.js?v=20260820a"></script>
   </body>
 </html>
