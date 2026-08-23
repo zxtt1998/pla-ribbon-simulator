@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css?v=20260818b" />
-    <link rel="stylesheet" href="enhancements.css?v=20260818e" />
+    <link rel="stylesheet" href="enhancements.css?v=20260823a" />
   </head>
   <body>
     <div class="app-shell">
@@ -56,6 +56,17 @@
             <label class="enlistment-year" for="enlistYear">入伍年份
               <select id="enlistYear" aria-label="入伍年份"><option value="">未填写（手动选择军龄）</option></select>
             </label>
+            <div class="rank-picker" aria-label="军衔选择">
+              <span>军衔</span>
+              <div id="rankGroupControls" class="rank-group-controls">
+                <button type="button" class="active" data-rank-group="officer">军官</button>
+                <button type="button" data-rank-group="nco">军士</button>
+              </div>
+              <label class="rank-select-label" for="rankSelect">现行衔级
+                <select id="rankSelect" aria-label="现行军衔"></select>
+              </label>
+              <small>肩章图源自维基页面所列公开图像；可选择“不显示军衔”。</small>
+            </div>
             <div class="name-card-fields" aria-label="姓名牌内容">
               <label>姓名<input id="nameInput" type="text" value="姓名" maxlength="6" aria-label="姓名牌姓名" /></label>
               <label>拼音<input id="pinyinInput" type="text" value="XING MING" maxlength="24" aria-label="姓名牌拼音" /></label>
@@ -75,6 +86,7 @@
               <div class="collar collar-left"></div><div class="collar collar-right"></div>
               <div class="rack-shadow"></div>
               <div id="ribbonAssembly" class="ribbon-assembly">
+                <div id="rankPlate" class="rank-plate" hidden aria-label="军衔栏"><img id="rankInsigniaLeft" alt="" /><span id="rankPlateLabel"></span><img id="rankInsigniaRight" alt="" /></div>
                 <div id="namePlate" class="name-plate" aria-label="姓名牌"><span id="namePlateZh">姓名</span><small id="namePlatePinyin">XING MING</small></div>
                 <div id="ribbonRack" class="ribbon-rack" aria-live="polite"></div>
               </div>
@@ -107,6 +119,6 @@
       <p id="viewerMeta"></p>
     </dialog>
 <script src="assets/pinyin-pro.min.js?v=20260820a"></script>
-<script src="app.js?v=20260820b"></script>
+<script src="app.js?v=20260823a"></script>
   </body>
 </html>
