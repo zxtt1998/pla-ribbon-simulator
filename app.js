@@ -127,7 +127,7 @@ const rankById=id=>rankInsignia.find(rank=>rank.id===id);
 const rankForceKey=()=>force==='navy'?'navy':force==='airforce'?'airforce':'army';
 const rankForceLabel=()=>force==='navy'?'海军':force==='airforce'?'空军':'陆军';
 const rankImageSrc=rank=>{const variant=rankForceKey();return variant==='army'?`assets/ranks/${rank.asset}.png`:`assets/ranks/${variant}-${rank.asset}.png`};
-const NAMEPLATE_ZH_FONT='KaiTi, STKaiti, "Kaiti SC", serif';
+const NAMEPLATE_ZH_FONT='KaiTi_GB2312, KaiTi, STKaiti, "Kaiti SC", serif';
 const $=s=>document.querySelector(s), list=$('#catalogList'), rack=$('#ribbonRack'), selectedList=$('#selectedList');
 const compoundSurnames=new Set(['欧阳','司马','上官','诸葛','夏侯','东方','皇甫','尉迟','公孙','慕容','令狐','长孙','宇文','司徒','司空','独孤','南宫','万俟','闻人','赫连','澹台','宗政','濮阳','淳于','单于','太叔','申屠','公冶','轩辕','令狐']);
 const toNamePinyin=value=>{const name=value.replace(/\s/g,'');if(!name||!window.pinyinPro)return'';const parts=[...name].map(char=>{const converted=window.pinyinPro.pinyin(char,{toneType:'none',type:'array'});return (converted[0]||char).toUpperCase()});const surnameLength=compoundSurnames.has(name.slice(0,2))&&parts.length>2?2:1;return parts.length>surnameLength?`${parts.slice(0,surnameLength).join('')} ${parts.slice(surnameLength).join('')}`:parts.join('')};
