@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css?v=20260831a" />
-    <link rel="stylesheet" href="enhancements.css?v=20260823c" />
+    <link rel="stylesheet" href="enhancements.css?v=20260905a" />
   </head>
   <body>
     <div class="app-shell">
@@ -67,6 +67,10 @@
               </label>
               <small>肩章图源自维基页面所列公开图像；可选择“不显示军衔”。</small>
             </div>
+            <label class="arm-patch-picker" for="armPatchSelect">臂章
+              <select id="armPatchSelect" aria-label="佩戴效果臂章"></select>
+              <small>可选臂章显示于佩戴效果右上方，并会随当前排列保存。</small>
+            </label>
             <div class="name-card-fields" aria-label="姓名牌内容">
               <label>姓名<input id="nameInput" type="text" value="姓名" maxlength="6" aria-label="姓名牌姓名" /></label>
               <label>拼音<input id="pinyinInput" type="text" value="XING MING" maxlength="24" aria-label="姓名牌拼音" /></label>
@@ -82,6 +86,7 @@
             <div class="panel-title"><div><p class="section-kicker">02 / 预览</p><h2>佩戴效果</h2></div><div class="preview-actions"><button class="outline-button export-button" id="exportRack">导出勋表</button><button class="outline-button export-button" id="exportRackDetails">导出勋表＋说明</button><button class="outline-button export-button" id="exportUniform">导出佩戴效果</button><button class="outline-button" id="refreshRibbons">刷新略章</button><button class="outline-button clear-button" id="clearAll">一键清除</button></div></div>
             <div class="uniform-canvas">
               <div class="uniform-label" id="uniformLabel">陆军礼服左胸 · 勋表佩戴区</div>
+              <img id="armPatch" class="arm-patch" alt="" hidden />
               <div class="epaulet epaulet-left"></div><div class="epaulet epaulet-right"></div>
               <div class="collar collar-left"></div><div class="collar collar-right"></div>
               <div class="rack-shadow"></div>
@@ -119,6 +124,6 @@
       <p id="viewerMeta"></p>
     </dialog>
 <script src="assets/pinyin-pro.min.js?v=20260820a"></script>
-  <script src="app.js?v=20260905b"></script>
+  <script src="app.js?v=20260905c"></script>
   </body>
 </html>
