@@ -1,5 +1,6 @@
 let imageRefreshKey='';
 const image = name => `assets/ribbons/${name}`;
+const displayImage = name => `assets/ribbons/display/${name}`;
 const thumbnail = name => `assets/thumbnails/${name}.png${imageRefreshKey?`?v=${imageRefreshKey}`:''}`;
 const ribbons = [
   {id:'cmc-vc',name:'军委副主席',category:'position',profile:'officer-command',kind:'岗位职务层级',rank:1,subtitle:'指挥管理军官',src:image('PLA_rank_ribbon_CMC_VC.svg')},
@@ -112,7 +113,12 @@ addLevels('joint-position',['高级联合岗位','中级联合岗位','初级联
   ['force-5','联勤保障部队','PLA_service_ribbon_joint_logistics_support_force.svg',362],
   ['force-6','武警部队','PLA_service_ribbon_armed_police.svg',363],
   ['force-7','国防动员单位','PLA_service_ribbon_national_defense_mobilization.svg',364]
-].forEach(([id,name,file,rank])=>addRibbon(id,`${name}任职经历`,'service',rank,'军兵种和武警部队任职经历',file));
+].forEach(([id,name,file,rank])=>{
+  addRibbon(id,`${name}任职经历`,'service',rank,'军兵种和武警部队任职经历',file);
+  if(id.startsWith('force-') && ['force-information','force-aerospace','force-cyberspace'].includes(id)){
+    ribbons.at(-1).src=displayImage(file);
+  }
+});
 addRibbon('instructor','专职教官（教员）','service',366,'军队院校教官任职经历','PLA_service_ribbon_instructor.svg');
 addRibbon('instructor-part','兼职教官（教员）','service',367,'军队院校教官任职经历','PLA_service_ribbon_instructor_part-time.svg');
 addLevels('tech-role-experience',['正高职专业技术岗位','副高职专业技术岗位','中职专业技术岗位','初职专业技术岗位'],'service',372,'专业技术岗位任职经历',n=>`PLA_service_ribbon_STO_lv${n}.svg`);
