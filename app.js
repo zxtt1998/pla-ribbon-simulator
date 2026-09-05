@@ -101,14 +101,25 @@ addLevels('unit-command-battalion',['正营级单位主官','副营级单位主�
 addRibbon('unit-command-company','正连级单位主官','service',320,'单位主官任职经历','PLA_service_ribbon_company.svg');
 [['中央军委机关','PLA_service_ribbon_organ_of_CMC.svg'],['军委机关部门主要领导','PLA_service_ribbon_organ_of_CMC_director.svg'],['军委机关局级内设机构主要领导','PLA_service_ribbon_organ_of_CMC_bureau_director.svg'],['军委机关处级内设机构主要领导','PLA_service_ribbon_organ_of_CMC_division_director.svg'],['正战区级机关','PLA_service_ribbon_organ_of_TCC.svg'],['正战区级机关主要领导','PLA_service_ribbon_organ_of_TCC_director.svg'],['正战区级机关内设机构主要领导','PLA_service_ribbon_organ_of_TCC_division_director.svg'],['副战区级机关','PLA_service_ribbon_organ_of_DBR.svg'],['副战区级机关主要领导','PLA_service_ribbon_organ_of_DBR_director.svg'],['军级机关','PLA_service_ribbon_organ_of_corps.svg'],['军级机关主要领导','PLA_service_ribbon_organ_of_corps_director.svg'],['军级机关内设机构主要领导','PLA_service_ribbon_organ_of_corps_division_director.svg'],['师旅团级机关','PLA_service_ribbon_organ_of_theatre_command.svg'],['师旅团级机关主要领导','PLA_service_ribbon_organ_of_theatre_command_director.svg'],['师旅团级机关局级内设机构主要领导','PLA_service_ribbon_organ_of_theatre_command_bureau_director.svg'],['师旅团级机关处级内设机构主要领导','PLA_service_ribbon_organ_of_theatre_command_division_director.svg']].forEach(([name,file],i)=>addRibbon(`organ-${i}`,name,'service',330+i,'机关任职经历',file));
 addLevels('joint-position',['高级联合岗位','中级联合岗位','初级联合岗位'],'service',350,'联合岗位任职经历',n=>`PLA_service_ribbon_joint_position_lv${n}.svg`);
-[['陆军','PLA_service_ribbon_ground_force.svg'],['海军','PLA_service_ribbon_navy.svg'],['空军','PLA_service_ribbon_air_force.svg'],['火箭军','PLA_service_ribbon_rocket_force.svg'],['战略支援部队','PLA_service_ribbon_strategic_support_force.svg'],['联勤保障部队','PLA_service_ribbon_joint_logistics_support_force.svg'],['武警部队','PLA_service_ribbon_armed_police.svg'],['国防动员单位','PLA_service_ribbon_national_defense_mobilization.svg']].forEach(([name,file],i)=>addRibbon(`force-${i}`,`${name}任职经历`,'service',355+i,'军兵种和武警部队任职经历',file));
-addRibbon('instructor','专职教官（教员）','service',364,'军队院校教官任职经历','PLA_service_ribbon_instructor.svg');
-addRibbon('instructor-part','兼职教官（教员）','service',365,'军队院校教官任职经历','PLA_service_ribbon_instructor_part-time.svg');
-addLevels('tech-role-experience',['正高职专业技术岗位','副高职专业技术岗位','中职专业技术岗位','初职专业技术岗位'],'service',370,'专业技术岗位任职经历',n=>`PLA_service_ribbon_STO_lv${n}.svg`);
-addLevels('command-training',['高级指挥教育培训','中级指挥教育培训','初级指挥教育培训'],'service',375,'军事教育培训经历',n=>`PLA_service_ribbon_education_and_training_in_command_lv${n}.svg`,'officer-command');
-addLevels('tech-training',['高级专业技术军官培训','中级专业技术军官培训','初级专业技术军官培训'],'service',378,'军事教育培训经历',n=>`PLA_service_ribbon_STO_training_lv${n}.svg`,'officer-tech');
-addLevels('nco-training',['高级军士晋升培训','中级军士晋升培训','初级军士晋升培训'],'service',381,'军事教育培训经历',n=>`PLA_service_ribbon_promotion_training_for_sergeant_lv${n}.svg`,'nco');
-addRibbon('overseas-education','出国（境）教育培训经历','service',385,'出国（境）教育培训经历','PLA_service_ribbon_overseas_education.svg');
+[
+  ['force-0','陆军','PLA_service_ribbon_ground_force.svg',355],
+  ['force-1','海军','PLA_service_ribbon_navy.svg',356],
+  ['force-2','空军','PLA_service_ribbon_air_force.svg',357],
+  ['force-3','火箭军','PLA_service_ribbon_rocket_force.svg',358],
+  ['force-information','信息支援部队','PLA_service_ribbon_information_support_force.png',359],
+  ['force-aerospace','军事航天部队','PLA_service_ribbon_aerospace_force.png',360],
+  ['force-cyberspace','网络空间部队','PLA_service_ribbon_cyberspace_force.png',361],
+  ['force-5','联勤保障部队','PLA_service_ribbon_joint_logistics_support_force.svg',362],
+  ['force-6','武警部队','PLA_service_ribbon_armed_police.svg',363],
+  ['force-7','国防动员单位','PLA_service_ribbon_national_defense_mobilization.svg',364]
+].forEach(([id,name,file,rank])=>addRibbon(id,`${name}任职经历`,'service',rank,'军兵种和武警部队任职经历',file));
+addRibbon('instructor','专职教官（教员）','service',366,'军队院校教官任职经历','PLA_service_ribbon_instructor.svg');
+addRibbon('instructor-part','兼职教官（教员）','service',367,'军队院校教官任职经历','PLA_service_ribbon_instructor_part-time.svg');
+addLevels('tech-role-experience',['正高职专业技术岗位','副高职专业技术岗位','中职专业技术岗位','初职专业技术岗位'],'service',372,'专业技术岗位任职经历',n=>`PLA_service_ribbon_STO_lv${n}.svg`);
+addLevels('command-training',['高级指挥教育培训','中级指挥教育培训','初级指挥教育培训'],'service',377,'军事教育培训经历',n=>`PLA_service_ribbon_education_and_training_in_command_lv${n}.svg`,'officer-command');
+addLevels('tech-training',['高级专业技术军官培训','中级专业技术军官培训','初级专业技术军官培训'],'service',380,'军事教育培训经历',n=>`PLA_service_ribbon_STO_training_lv${n}.svg`,'officer-tech');
+addLevels('nco-training',['高级军士晋升培训','中级军士晋升培训','初级军士晋升培训'],'service',383,'军事教育培训经历',n=>`PLA_service_ribbon_promotion_training_for_sergeant_lv${n}.svg`,'nco');
+addRibbon('overseas-education','出国（境）教育培训经历','service',387,'出国（境）教育培训经历','PLA_service_ribbon_overseas_education.svg');
 
 // 补足军龄略章的 6 至 9 年项目。
 addLevels('year-short',['六年军龄略章','七年军龄略章','八年军龄略章','九年军龄略章'],'term',406,'军龄',n=>`PLA_service_ribbon_${n+5}yrs.svg`);
