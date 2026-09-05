@@ -237,7 +237,33 @@ const termLabel={1:'一',2:'二',3:'三',4:'四',5:'五',6:'六',7:'七',8:'八'
 enlistYear.addEventListener('change',e=>{const year=Number(e.target.value);if(!year){autoArrange();return}const years=currentYear-year,terms=termForYears(years),termItems=terms.map(value=>ribbons.find(r=>r.category==='term'&&r.name===`${termLabel[value]}年军龄略章`)).filter(Boolean);selected=[...selected.filter(r=>r.category!=='term'),...termItems.map(r=>makeSelected(r))];autoArrange()});
 const clearAll=()=>{selected=[];enlistYear.value='';render()};
 const refreshRibbonImages=()=>{imageRefreshKey=Date.now();render()};
+const colorDistance=(pixel,base)=>Math.abs(pixel[0]-base[0])+Math.abs(pixel[1]-base[1])+Math.abs(pixel[2]-base[2]);
+const connectedRuns=(values,gap=3)=>{const runs=[];let start=-1,last=-1;values.forEach((active,index)=>{if(active){if(start<0||index-last>gap){if(start>=0)runs.push([start,last]);start=index}last=index}});if(start>=0)runs.push([start,last]);return runs};
+const fitImage=(source,width,height)=>{const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(source,0,0,width,height);return ctx.getImageData(0,0,width,height).data};
+const imageDifference=(a,b,width,height)=>{let total=0,count=0;for(let y=1;y<height-1;y++)for(let x=1;x<Math.floor(width*.79);x++){const i=(y*width+x)*4;total+=Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2]);count++}return total/count};
+async function recognizeImportedRack(file){
+  const button=$('#importRibbons'),original=button.textContent;button.disabled=true;button.textContent='正在识别…';
+  try{
+    const bitmap=await createImageBitmap(file),scale=Math.min(1,1200/bitmap.width),width=Math.max(1,Math.round(bitmap.width*scale)),height=Math.max(1,Math.round(bitmap.height*scale)),canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(bitmap,0,0,width,height);bitmap.close?.();
+    const pixels=ctx.getImageData(0,0,width,height).data,at=(x,y)=>{const i=(y*width+x)*4;return [pixels[i],pixels[i+1],pixels[i+2]]},palette=new Map;
+    for(let y=0;y<Math.round(height*.55);y+=4)for(let x=0;x<width;x+=4){const pixel=at(x,y),key=pixel.map(value=>Math.floor(value/16)).join(',');palette.set(key,(palette.get(key)||0)+1)}
+    const base=(palette.entries().next().value&&[...palette.entries()].sort((a,b)=>b[1]-a[1])[0][0].split(',').map(value=>Number(value)*16+8))||[184,184,184];
+    const whiteRow=Array.from({length:height},(_,y)=>{let light=0;for(let x=0;x<width;x+=3){const [r,g,b]=at(x,y);if(r>235&&g>235&&b>235)light++}return light/(Math.ceil(width/3))>.88}).findIndex((value,index)=>index>30&&value);
+    const boardHeight=whiteRow>0?whiteRow:height;
+    const activeRows=connectedRuns(Array.from({length:boardHeight},(_,y)=>{let amount=0;for(let x=0;x<width;x+=3)if(colorDistance(at(x,y),base)>82)amount++;return amount>width*.05}),5).filter(([top,bottom])=>bottom-top>Math.max(8,boardHeight*.025)).slice(0,7);
+    const boxes=[];
+    activeRows.forEach(([top,bottom])=>{const xRuns=connectedRuns(Array.from({length:width},(_,x)=>{let amount=0;for(let y=top;y<=bottom;y+=2)if(colorDistance(at(x,y),base)>82)amount++;return amount>(bottom-top)*.12}),5).filter(([left,right])=>right-left>Math.max(20,width*.08));xRuns.forEach(([left,right])=>boxes.push({left:Math.max(0,left-2),top:Math.max(0,top-2),width:Math.min(width-1,right+2)-Math.max(0,left-2),height:Math.min(boardHeight-1,bottom+2)-Math.max(0,top-2)}))});
+    if(!boxes.length)throw new Error('未找到标准略章托架');
+    const templates=await Promise.all(ribbons.filter(r=>r.category!=='term').map(async item=>({item,image:await loadExportImage(thumbnail(item.src.split('/').pop()))})));
+    const found=[];
+    for(const box of boxes){const observed=ctx.getImageData(box.left,box.top,box.width,box.height),targetCanvas=document.createElement('canvas');targetCanvas.width=48;targetCanvas.height=16;targetCanvas.getContext('2d').drawImage(canvas,box.left,box.top,box.width,box.height,0,0,48,16);const target=targetCanvas.getContext('2d',{willReadFrequently:true}).getImageData(0,0,48,16).data;let best=null;for(const template of templates){if(!template.image)continue;const score=imageDifference(target,fitImage(template.image,48,16),48,16);if(!best||score<best.score)best={item:template.item,score}}if(best&&best.score<105)found.push(best.item)}
+    const unique=[];found.forEach(item=>{if(multiWearable(item)||!unique.some(existing=>existing.id===item.id))unique.push(item)});
+    if(!unique.length)throw new Error('图片清晰度或托架样式不符合识别条件');
+    selected=unique.map(item=>makeSelected(item));autoArrange();alert(`已本地识别并添加 ${unique.length} 枚略章。请核对结果；重复获奖次数需手动调整。`);
+  }catch(error){alert(`识别未完成：${error.message||'请使用本模拟器导出的清晰勋表图'}`)}finally{button.disabled=false;button.textContent=original}
+}
 $('#searchInput').addEventListener('input',e=>{query=e.target.value.trim();renderCatalog()});$('#resetButton').addEventListener('click',clearAll);$('#clearAll').addEventListener('click',clearAll);$('#refreshRibbons').addEventListener('click',refreshRibbonImages);
+$('#importRibbons').addEventListener('click',()=>$('#ribbonImport').click());$('#ribbonImport').addEventListener('change',e=>{const [file]=e.target.files||[];if(file)recognizeImportedRack(file);e.target.value=''});
 selectedList.addEventListener('dragstart',e=>{dragId=e.target.closest('[data-id]')?.dataset.id});selectedList.addEventListener('dragover',e=>e.preventDefault());selectedList.addEventListener('drop',e=>{e.preventDefault();const target=e.target.closest('[data-id]')?.dataset.id;if(!dragId||!target||dragId===target)return;const from=selected.findIndex(r=>r.selectionId===dragId),to=selected.findIndex(r=>r.selectionId===target),[item]=selected.splice(from,1);selected.splice(to,0,item);render()});
 const viewer=$('#ribbonViewer'),viewerImage=$('#viewerImage');
 document.addEventListener('click',e=>{const trigger=e.target.closest('[data-preview]');if(!trigger)return;const item=selected.find(r=>r.id===trigger.dataset.preview)||ribbons.find(r=>r.id===trigger.dataset.preview);if(!item)return;$('#viewerTitle').textContent=item.name;viewerImage.onerror=()=>{viewerImage.onerror=null;viewerImage.src=thumbnail(item.src.split('/').pop());$('#viewerMeta').textContent=`${item.kind} · ${item.subtitle}（原图加载失败，已显示轻量图）`};viewerImage.src=item.src;viewerImage.alt=`${item.name}勋表大图`;$('#viewerMeta').textContent=`${item.kind} · ${item.subtitle}`;viewer.showModal()});
